@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>校园荣誉 - Web技术大学</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-top">
+        <div class="top-right">
+          <a href="../login.html">在校师生</a>
+          <a href="../alumni/alumni.html">校友总会</a>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="logo">
+          <h1>Web技术大学</h1>
+          <p>Web Technology University</p>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="headerSearchInput"
+            placeholder="请输入关键词"
+          />
+          <button onclick="handleSearch()">搜索</button>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li>
+            <a href="../index.html">首页</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">校园快讯</a></li>
+              <li><a href="../news/news_past.html">通知速递</a></li>
+              <li><a href="../campus/activities.html">校园活动</a></li>
+              <li><a href="../news/news_media.html">今日聚焦</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../about/intro.html" class="active">学校概况</a>
+            <ul class="dropdown">
+              <li><a href="../about/intro.html">学校简介</a></li>
+              <li><a href="../about/leaders.html">领导信息</a></li>
+              <li><a href="../about/history.html">办学历史</a></li>
+              <li><a href="../about/honors.html">校园荣誉</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../departments/dept_literature.html">院系设置</a>
+            <ul class="dropdown">
+              <li><a href="../departments/dept_literature.html">文学院</a></li>
+              <li><a href="../departments/dept_science.html">理学院</a></li>
+              <li><a href="../departments/dept_engineering.html">工学院</a></li>
+              <li><a href="../departments/dept_art.html">艺术学院</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../news/news_media.html">新闻中心</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">媒体报道</a></li>
+              <li><a href="../news/news_photos.html">图片新闻</a></li>
+              <li><a href="../news/news_videos.html">视频集锦</a></li>
+              <li><a href="../news/news_past.html">往期新闻</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../admissions/admission_guide.html">招生就业</a>
+            <ul class="dropdown">
+              <li><a href="../admissions/admission_guide.html">招生简章</a></li>
+              <li><a href="../admissions/employment.html">就业信息</a></li>
+              <li><a href="../admissions/graduates.html">毕业生风采</a></li>
+              <li><a href="../admissions/apply_guide.html">报考指南</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../research/research_projects.html">科学研究</a>
+            <ul class="dropdown">
+              <li><a href="../research/research_projects.html">科研项目</a></li>
+              <li><a href="../research/achievements.html">成果展示</a></li>
+              <li><a href="../research/teams.html">研究团队</a></li>
+              <li><a href="../research/journals.html">学术期刊</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../campus/clubs.html">校园文化</a>
+            <ul class="dropdown">
+              <li><a href="../campus/clubs.html">学生社团</a></li>
+              <li><a href="../campus/activities.html">文化活动</a></li>
+              <li><a href="../campus/art_show.html">艺术展演</a></li>
+              <li><a href="../contact.html">联系我们</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="page-container">
+      <aside class="sidebar">
+        <div class="sidebar-title">学校概况</div>
+        <ul class="sidebar-menu">
+          <li><a href="../about/intro.html" class="">学校简介</a></li>
+          <li><a href="../about/leaders.html" class="">领导信息</a></li>
+          <li><a href="../about/history.html" class="">办学历史</a></li>
+          <li><a href="../about/honors.html" class="active">校园荣誉</a></li>
+        </ul>
+      </aside>
+
+      <div class="page-content">
+        <div class="page-header">
+          <h2>校园荣誉</h2>
+          <div class="breadcrumb">
+            当前位置：<a href="../index.html">首页</a> > <a href="#">学校概况</a> >
+            校园荣誉
+          </div>
+        </div>
+        <div class="content-text">
+          <div class="honor-grid">
+            <div class="honor-item">
+              <i class="fas fa-award"></i>
+              <h4>全国文明校园</h4>
+              <p>中央文明委授予</p>
+            </div>
+            <div class="honor-item">
+              <i class="fas fa-medal"></i>
+              <h4>省级教学成果特等奖</h4>
+              <p>省人民政府授予</p>
+            </div>
+            <div class="honor-item">
+              <i class="fas fa-trophy"></i>
+              <h4>就业工作先进集体</h4>
+              <p>省教育厅授予</p>
+            </div>
+            <div class="honor-item">
+              <i class="fas fa-star"></i>
+              <h4>五四红旗团委</h4>
+              <p>团中央授予</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <h3>Web技术大学</h3>
+        <p>地址：XX省XX市高新区文理大道1号</p>
+      </div>
+      <div class="footer-bottom">
+        <div class="links">
+          <span>相关链接：</span>
+          <a href="http://www.moe.gov.cn/" target="_blank"
+            >中华人民共和国教育部</a
+          >
+          <a href="https://www.edu.cn/" target="_blank">中国教育科研网</a>
+        </div>
+        <div class="nav-links">
+          <a href="#">快速导航</a>
+          <a href="../about/intro.html">学校概况</a>
+          <a href="../departments/dept_literature.html">院系设置</a>
+          <a href="../contact.html">联系我们</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

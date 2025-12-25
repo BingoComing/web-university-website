@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我校召开2025年本科教育教学工作审核评估动员大会 - Web技术大学</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .news-detail-container {
+        width: 1200px;
+        margin: 20px auto;
+        padding: 40px;
+        background: #fff;
+        min-height: 600px;
+      }
+      .news-header {
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+      .news-title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      .news-meta {
+        color: #999;
+        font-size: 14px;
+      }
+      .news-meta span {
+        margin: 0 10px;
+      }
+      .news-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #444;
+      }
+      .news-content p {
+        margin-bottom: 20px;
+        text-indent: 2em;
+      }
+      .breadcrumb {
+        width: 1200px;
+        margin: 20px auto 0;
+        font-size: 14px;
+        color: #666;
+      }
+      .breadcrumb a {
+        color: #0056b3;
+      }
+      .back-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 8px 20px;
+        background: #f0f0f0;
+        color: #333;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+      .back-btn:hover {
+        background: #e0e0e0;
+        color: #0056b3;
+      }
+      @media (max-width: 1240px) {
+        .news-detail-container,
+        .breadcrumb {
+          width: 95%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+      <div class="header-top">
+        <div class="top-right">
+          <a href="../login.html">在校师生</a>
+          <a href="../alumni/alumni.html">校友总会</a>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="logo">
+          <h1>Web技术大学</h1>
+          <p>Web Technology University</p>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="headerSearchInput"
+            placeholder="请输入关键词"
+          />
+          <button onclick="handleSearch()">搜索</button>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li>
+            <a href="../index.html">首页</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">校园快讯</a></li>
+              <li><a href="../news/news_past.html">通知速递</a></li>
+              <li><a href="../campus/activities.html">校园活动</a></li>
+              <li><a href="../news/news_media.html">今日聚焦</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../about/intro.html">学校概况</a>
+            <ul class="dropdown">
+              <li><a href="../about/intro.html">学校简介</a></li>
+              <li><a href="../about/leaders.html">领导信息</a></li>
+              <li><a href="../about/history.html">办学历史</a></li>
+              <li><a href="../about/honors.html">校园荣誉</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../departments/dept_literature.html">院系设置</a>
+            <ul class="dropdown">
+              <li><a href="../departments/dept_literature.html">文学院</a></li>
+              <li><a href="../departments/dept_science.html">理学院</a></li>
+              <li><a href="../departments/dept_engineering.html">工学院</a></li>
+              <li><a href="../departments/dept_art.html">艺术学院</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../news/news_media.html">新闻中心</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">媒体报道</a></li>
+              <li><a href="../news/news_photos.html">图片新闻</a></li>
+              <li><a href="../news/news_videos.html">视频集锦</a></li>
+              <li><a href="../news/news_past.html">往期新闻</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../admissions/admission_guide.html">招生就业</a>
+            <ul class="dropdown">
+              <li><a href="../admissions/admission_guide.html">招生简章</a></li>
+              <li><a href="../admissions/employment.html">就业信息</a></li>
+              <li><a href="../admissions/graduates.html">毕业生风采</a></li>
+              <li><a href="../admissions/apply_guide.html">报考指南</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../research/research_projects.html">科学研究</a>
+            <ul class="dropdown">
+              <li><a href="../research/research_projects.html">科研项目</a></li>
+              <li><a href="../research/achievements.html">成果展示</a></li>
+              <li><a href="../research/teams.html">研究团队</a></li>
+              <li><a href="../research/journals.html">学术期刊</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../campus/clubs.html">校园文化</a>
+            <ul class="dropdown">
+              <li><a href="../campus/clubs.html">学生社团</a></li>
+              <li><a href="../campus/activities.html">文化活动</a></li>
+              <li><a href="../campus/art_show.html">艺术展演</a></li>
+              <li><a href="../contact.html">联系我们</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="breadcrumb">
+      当前位置：<a href="../index.html">首页</a> > <a href="#">校园要闻</a> > 正文
+    </div>
+    <main class="news-detail-container">
+      <div class="news-header">
+        <h1 class="news-title">
+          我校召开2025年本科教育教学工作审核评估动员大会
+        </h1>
+        <div class="news-meta">
+          <span>发布时间：2025-06-09</span>
+          <span>来源：教务处</span>
+          <span>点击量：1205</span>
+        </div>
+      </div>
+      <div class="news-content">
+        <p>
+          6月9日上午，我校在行政楼报告厅召开2025年本科教育教学工作审核评估动员大会。校领导班子成员、全体中层干部、各教学单位系主任、专业负责人及教师代表参加会议。会议由副校长李四主持。
+        </p>
+        <p>
+          校长王五在动员讲话中指出，新一轮本科教育教学审核评估是深化新时代教育评价改革、提升本科人才培养质量的重要举措，是对学校本科教育教学工作的一次全面“体检”。全校上下要提高政治站位，深刻认识审核评估的重要意义，切实增强做好迎评促建工作的责任感和使命感。
+        </p>
+        <img
+          src="../../assets/images/news/hy.jpg"
+          alt="会议现场"
+          style="
+            max-width: 80%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 4px;
+          "
+        />
+        <p style="text-align: center; color: #666; text-indent: 0">
+          会议现场图片
+        </p>
+        <p>
+          会议强调，要坚持“以评促建、以评促改、以评促管、以评促强”的方针，聚焦评估指标体系，全面梳理学校本科教育教学工作，查找短板弱项，扎实开展整改建设。要强化组织领导，压实工作责任，加强协同配合，形成工作合力，确保审核评估各项工作落到实处、取得实效。
+        </p>
+        <p>
+          会上，教务处处长对审核评估工作方案进行了详细解读，并就近期重点工作进行了安排部署。相关职能部门和教学单位负责人作了表态发言。
+        </p>
+      </div>
+      <div style="text-align: center">
+        <a href="../index.html" class="back-btn">返回首页</a>
+        <a
+          href="javascript:history.back()"
+          class="back-btn"
+          style="margin-left: 10px"
+          >返回上一页</a
+        >
+      </aside>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="footer-top">
+        <h3>Web技术大学</h3>
+        <p>地址：XX省XX市高新区文理大道1号</p>
+      </div>
+      <div class="footer-bottom">
+        <div class="links">
+          <span>相关链接：</span>
+          <a href="http://www.moe.gov.cn/" target="_blank"
+            >中华人民共和国教育部</a
+          >
+          <a href="https://www.edu.cn/" target="_blank">中国教育科研网</a>
+        </div>
+        <div class="nav-links">
+          <a href="#">快速导航</a>
+          <a href="../about/intro.html">学校概况</a>
+          <a href="../departments/dept_literature.html">院系设置</a>
+          <a href="../contact.html">联系我们</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

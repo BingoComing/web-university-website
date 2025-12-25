@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图书搜索 - Web技术大学图书馆</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+      <div class="header-top">
+        <div class="top-right">
+          <a href="../login.html">在校师生</a>
+          <a href="../alumni/alumni.html">校友总会</a>
+          <div class="language-switcher">
+            <button data-lang="zh" class="active">中文</button>
+            <button data-lang="en">English</button>
+          </div>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="logo">
+          <h1>Web技术大学</h1>
+          <p>Web Technology University</p>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="headerSearchInput"
+            placeholder="请输入关键词"
+          />
+          <button onclick="handleSearch()">搜索</button>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li>
+            <a href="../index.html">首页</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">校园快讯</a></li>
+              <li><a href="../news/news_past.html">通知速递</a></li>
+              <li><a href="../campus/activities.html">校园活动</a></li>
+              <li><a href="../news/news_media.html">今日聚焦</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../about/intro.html">学校概况</a>
+            <ul class="dropdown">
+              <li><a href="../about/intro.html">学校简介</a></li>
+              <li><a href="../about/leaders.html">领导信息</a></li>
+              <li><a href="../about/history.html">办学历史</a></li>
+              <li><a href="../about/honors.html">校园荣誉</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../departments/dept_literature.html">院系设置</a>
+            <ul class="dropdown">
+              <li><a href="../departments/dept_literature.html">文学院</a></li>
+              <li><a href="../departments/dept_science.html">理学院</a></li>
+              <li><a href="../departments/dept_engineering.html">工学院</a></li>
+              <li><a href="../departments/dept_art.html">艺术学院</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../news/news_media.html">新闻中心</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">媒体报道</a></li>
+              <li><a href="../news/news_photos.html">图片新闻</a></li>
+              <li><a href="../news/news_videos.html">视频集锦</a></li>
+              <li><a href="../news/news_past.html">往期新闻</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../admissions/admission_guide.html">招生就业</a>
+            <ul class="dropdown">
+              <li><a href="../admissions/admission_guide.html">招生简章</a></li>
+              <li><a href="../admissions/employment.html">就业信息</a></li>
+              <li><a href="../admissions/graduates.html">毕业生风采</a></li>
+              <li><a href="../admissions/apply_guide.html">报考指南</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../research/research_projects.html">科学研究</a>
+            <ul class="dropdown">
+              <li><a href="../research/research_projects.html">科研项目</a></li>
+              <li><a href="../research/achievements.html">成果展示</a></li>
+              <li><a href="../research/teams.html">研究团队</a></li>
+              <li><a href="../research/journals.html">学术期刊</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../campus/clubs.html">校园文化</a>
+            <ul class="dropdown">
+              <li><a href="../campus/clubs.html">学生社团</a></li>
+              <li><a href="../campus/activities.html">文化活动</a></li>
+              <li><a href="../campus/art_show.html">艺术展演</a></li>
+              <li><a href="../contact.html">联系我们</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="breadcrumb">
+      <div class="container">
+        当前位置：<a href="../index.html">首页</a> >
+        <a href="#">图书馆</a> > 图书搜索
+      </div>
+    </div>
+
+    <main class="main">
+      <div class="container">
+        <!-- 图书馆顶部横幅 -->
+        <section class="library-banner">
+          <div class="banner-content">
+            <h2 data-i18n="library.title">Web技术大学图书馆</h2>
+            <p data-i18n="library.subtitle">知识的海洋，智慧的殿堂</p>
+          </div>
+        </section>
+
+        <!-- 图书搜索区域 -->
+        <section class="book-search-section">
+          <div class="search-container">
+            <div class="search-header">
+              <h3 data-i18n="library.searchTitle">图书搜索</h3>
+              <p data-i18n="library.searchDesc">搜索图书馆馆藏图书资源</p>
+            </div>
+            <form id="bookSearchForm" class="book-search-form" onsubmit="return performBookSearch()">
+              <div class="search-fields">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="searchKeyword" data-i18n="library.keyword">关键词</label>
+                    <input type="text" id="searchKeyword" name="searchKeyword" placeholder="请输入书名、作者、ISBN或主题" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="searchType" data-i18n="library.searchType">搜索类型</label>
+                    <select id="searchType" name="searchType">
+                      <option value="all" data-i18n="library.all">全部字段</option>
+                      <option value="title" data-i18n="library.title">书名</option>
+                      <option value="author" data-i18n="library.author">作者</option>
+                      <option value="isbn" data-i18n="library.isbn">ISBN</option>
+                      <option value="subject" data-i18n="library.subject">主题</option>
+                      <option value="publisher" data-i18n="library.publisher">出版社</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="category" data-i18n="library.category">图书分类</label>
+                    <select id="category" name="category">
+                      <option value="" data-i18n="library.allCategories">全部分类</option>
+                      <option value="computer" data-i18n="library.computer">计算机科学</option>
+                      <option value="literature" data-i18n="library.literature">文学</option>
+                      <option value="science" data-i18n="library.science">自然科学</option>
+                      <option value="engineering" data-i18n="library.engineering">工程技术</option>
+                      <option value="social" data-i18n="library.social">社会科学</option>
+                      <option value="art" data-i18n="library.art">艺术</option>
+                      <option value="history" data-i18n="library.history">历史</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="sortBy" data-i18n="library.sortBy">排序方式</label>
+                    <select id="sortBy" name="sortBy">
+                      <option value="relevance" data-i18n="library.relevance">相关度</option>
+                      <option value="publicationDate" data-i18n="library.publicationDate">出版日期</option>
+                      <option value="title" data-i18n="library.title">书名</option>
+                      <option value="author" data-i18n="library.author">作者</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="search-actions">
+                <button type="reset" class="btn btn-secondary" data-i18n="library.reset">重置</button>
+                <button type="submit" class="btn btn-primary" data-i18n="library.search">搜索</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 搜索结果区域 -->
+        <section class="search-results-section">
+          <div id="searchResultsHeader" class="results-header" style="display: none;">
+            <h3 data-i18n="library.results">搜索结果</h3>
+            <div class="results-info">
+              <span id="resultsCount" data-i18n="library.resultsCount">找到 <strong id="totalResults">0</strong> 本图书</span>
+              <div class="results-sort">
+                <span data-i18n="library.sortBy">排序方式：</span>
+                <select id="resultsSort" onchange="performBookSearch()">
+                  <option value="relevance" data-i18n="library.relevance">相关度</option>
+                  <option value="publicationDate" data-i18n="library.publicationDate">出版日期</option>
+                  <option value="title" data-i18n="library.title">书名</option>
+                  <option value="author" data-i18n="library.author">作者</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div id="searchResults" class="results-container">
+            <div class="empty-state">
+              <i class="fas fa-book-open"></i>
+              <h4 data-i18n="library.emptyTitle">开始搜索</h4>
+              <p data-i18n="library.emptyDesc">输入关键词，探索图书馆的丰富资源</p>
+            </div>
+          </div>
+
+          <!-- 分页控件 -->
+          <div id="pagination" class="pagination" style="display: none;">
+            <button onclick="changePage(1)" id="firstPage" class="btn btn-secondary" data-i18n="library.firstPage">首页</button>
+            <button onclick="changePage(currentPage - 1)" id="prevPage" class="btn btn-secondary" data-i18n="library.prevPage">上一页</button>
+            <span id="pageInfo" data-i18n="library.pageInfo">第 <span id="currentPage">1</span> 页，共 <span id="totalPages">1</span> 页</span>
+            <button onclick="changePage(currentPage + 1)" id="nextPage" class="btn btn-secondary" data-i18n="library.nextPage">下一页</button>
+            <button onclick="changePage(totalPages)" id="lastPage" class="btn btn-secondary" data-i18n="library.lastPage">末页</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 图书详情模态框 -->
+    <div id="bookDetailModal" class="modal">
+      <div class="modal-content modal-large">
+        <div class="modal-header">
+          <h3 id="modalTitle" data-i18n="library.bookDetail">图书详情</h3>
+          <span class="close" onclick="closeBookDetailModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div id="bookDetailContent" class="book-detail-content">
+            <!-- 图书详情内容将通过JavaScript动态填充 -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="closeBookDetailModal()" data-i18n="library.close">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <h3>Web技术大学</h3>
+          <p>地址：XX省XX市高新区文理大道1号</p>
+        </div>
+        <div class="footer-bottom">
+          <div class="links">
+            <span>相关链接：</span>
+            <a href="http://www.moe.gov.cn/" target="_blank">中华人民共和国教育部</a>
+            <a href="https://www.edu.cn/" target="_blank">中国教育科研网</a>
+          </div>
+          <div class="nav-links">
+            <a href="../about/intro.html">学校概况</a>
+            <a href="../departments/dept_literature.html">院系设置</a>
+            <a href="../contact.html">联系我们</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      // 图书数据（模拟）
+      const mockBooks = [
+        {
+          id: 1,
+          title: "JavaScript高级程序设计（第4版）",
+          author: "马特·弗里斯比",
+          isbn: "9787115521682",
+          publisher: "人民邮电出版社",
+          publicationDate: "2020-01-01",
+          category: "computer",
+          subject: "JavaScript,前端开发,Web开发",
+          description: "本书是JavaScript领域的经典著作，全面介绍了JavaScript语言的核心概念和高级特性，包括DOM操作、事件处理、异步编程、模块化开发等内容。",
+          cover: "https://via.placeholder.com/150x200/4a90e2/ffffff?text=JS+高级程序设计",
+          available: true,
+          callNumber: "TP312JA/1234",
+          location: "图书馆3楼计算机区"
+        },
+        {
+          id: 2,
+          title: "深入理解计算机系统（第3版）",
+          author: "兰德尔·E.布莱恩特",
+          isbn: "9787111544937",
+          publisher: "机械工业出版社",
+          publicationDate: "2016-01-01",
+          category: "computer",
+          subject: "计算机系统,操作系统,计算机组成原理",
+          description: "本书从程序员的角度全面阐述计算机系统的内部工作原理，包括计算机体系结构、操作系统、编译原理等内容，是计算机科学领域的经典教材。",
+          cover: "https://via.placeholder.com/150x200/50e3c2/ffffff?text=深入理解计算机系统",
+          available: true,
+          callNumber: "TP301/5678",
+          location: "图书馆4楼科学区"
+        },
+        {
+          id: 3,
+          title: "算法导论（第3版）",
+          author: "托马斯·H. 科尔曼",
+          isbn: "9787111407010",
+          publisher: "机械工业出版社",
+          publicationDate: "2013-01-01",
+          category: "computer",
+          subject: "算法,数据结构,计算机科学",
+          description: "本书是算法领域的经典著作，全面介绍了各种算法设计和分析技术，包括排序、搜索、图算法、动态规划等内容，是计算机科学专业的核心教材。",
+          cover: "https://via.placeholder.com/150x200/f5a623/ffffff?text=算法导论",
+          available: false,
+          callNumber: "TP301.6/9012",
+          location: "图书馆4楼科学区"
+        },
+        {
+          id: 4,
+          title: "Python编程：从入门到实践",
+          author: "埃里克·马瑟斯",
+          isbn: "9787115428028",
+          publisher: "人民邮电出版社",
+          publicationDate: "2016-07-01",
+          category: "computer",
+          subject: "Python,编程入门,计算机科学",
+          description: "本书是一本Python编程入门书籍，采用动手实践的方式，引导读者从基础开始学习Python编程，包括数据结构、面向对象编程、Web开发等内容。",
+          cover: "https://via.placeholder.com/150x200/7ed321/ffffff?text=Python编程",
+          available: true,
+          callNumber: "TP312PY/3456",
+          location: "图书馆3楼计算机区"
+        },
+        {
+          id: 5,
+          title: "设计模式：可复用面向对象软件的基础",
+          author: " Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+          isbn: "9787111211358",
+          publisher: "机械工业出版社",
+          publicationDate: "2007-11-01",
+          category: "computer",
+          subject: "设计模式,面向对象,软件工程",
+          description: "本书是设计模式领域的经典著作，介绍了23种设计模式，包括创建型模式、结构型模式和行为型模式，是面向对象软件开发的重要参考书籍。",
+          cover: "https://via.placeholder.com/150x200/bd10e0/ffffff?text=设计模式",
+          available: true,
+          callNumber: "TP311.52/7890",
+          location: "图书馆3楼计算机区"
+        },
+        {
+          id: 6,
+          title: "人类简史：从动物到上帝",
+          author: "尤瓦尔·赫拉利",
+          isbn: "9787508647357",
+          publisher: "中信出版社",
+          publicationDate: "2014-11-01",
+          category: "history",
+          subject: "人类历史,人类学,社会学",
+          description: "本书从认知革命、农业革命到科学革命，重新解读人类历史，探讨人类如何从一种普通的灵长类动物发展成为地球的主宰。",
+          cover: "https://via.placeholder.com/150x200/ff6b6b/ffffff?text=人类简史",
+          available: true,
+          callNumber: "K109/2345",
+          location: "图书馆2楼历史区"
+        },
+        {
+          id: 7,
+          title: "百年孤独",
+          author: "加西亚·马尔克斯",
+          isbn: "9787544270878",
+          publisher: "南海出版公司",
+          publicationDate: "2011-06-01",
+          category: "literature",
+          subject: "小说,魔幻现实主义,拉美文学",
+          description: "本书是魔幻现实主义文学的代表作，讲述了布恩迪亚家族七代人的传奇故事，反映了拉丁美洲一个世纪以来风云变幻的历史。",
+          cover: "https://via.placeholder.com/150x200/4a4a4a/ffffff?text=百年孤独",
+          available: true,
+          callNumber: "I775.45/6789",
+          location: "图书馆1楼文学区"
+        },
+        {
+          id: 8,
+          title: "三体",
+          author: "刘慈欣",
+          isbn: "9787536692930",
+          publisher: "重庆出版社",
+          publicationDate: "2008-01-01",
+          category: "literature",
+          subject: "科幻小说,宇宙,外星文明",
+          description: "本书是刘慈欣科幻小说的代表作，讲述了地球人类文明与三体文明的接触、博弈和战争，探讨了宇宙文明的生存法则和人类的未来命运。",
+          cover: "https://via.placeholder.com/150x200/8b5cf6/ffffff?text=三体",
+          available: true,
+          callNumber: "I247.55/1234",
+          location: "图书馆1楼文学区"
+        }
+      ];
+
+      // 全局变量
+      let currentPage = 1;
+      let totalPages = 1;
+      let totalResults = 0;
+      let searchResults = [];
+      const booksPerPage = 6;
+
+      // 执行图书搜索
+      function performBookSearch() {
+        const keyword = document.getElementById('searchKeyword').value.trim();
+        const searchType = document.getElementById('searchType').value;
+        const category = document.getElementById('category').value;
+        const sortBy = document.getElementById('resultsSort') ? document.getElementById('resultsSort').value : 'relevance';
+
+        if (!keyword) {
+          return false;
+        }
+
+        // 过滤和搜索图书
+        searchResults = mockBooks.filter(book => {
+          let match = false;
+          const lowerKeyword = keyword.toLowerCase();
+
+          // 根据搜索类型进行匹配
+          switch (searchType) {
+            case 'title':
+              match = book.title.toLowerCase().includes(lowerKeyword);
+              break;
+            case 'author':
+              match = book.author.toLowerCase().includes(lowerKeyword);
+              break;
+            case 'isbn':
+              match = book.isbn.includes(lowerKeyword);
+              break;
+            case 'subject':
+              match = book.subject.toLowerCase().includes(lowerKeyword);
+              break;
+            case 'publisher':
+              match = book.publisher.toLowerCase().includes(lowerKeyword);
+              break;
+            default: // all
+              match = book.title.toLowerCase().includes(lowerKeyword) ||
+                      book.author.toLowerCase().includes(lowerKeyword) ||
+                      book.isbn.includes(lowerKeyword) ||
+                      book.subject.toLowerCase().includes(lowerKeyword) ||
+                      book.publisher.toLowerCase().includes(lowerKeyword);
+          }
+
+          // 按分类过滤
+          if (category && book.category !== category) {
+            match = false;
+          }
+
+          return match;
+        });
+
+        // 排序
+        sortResults(sortBy);
+
+        // 初始化分页
+        totalResults = searchResults.length;
+        totalPages = Math.ceil(totalResults / booksPerPage);
+        currentPage = 1;
+
+        // 显示搜索结果
+        displaySearchResults();
+
+        return false;
+      }
+
+      // 排序结果
+      function sortResults(sortBy) {
+        switch (sortBy) {
+          case 'title':
+            searchResults.sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
+            break;
+          case 'author':
+            searchResults.sort((a, b) => a.author.localeCompare(b.author, 'zh-CN'));
+            break;
+          case 'publicationDate':
+            searchResults.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate));
+            break;
+          default: // relevance (默认排序，保持原顺序)
+            break;
+        }
+      }
+
+      // 显示搜索结果
+      function displaySearchResults() {
+        const resultsContainer = document.getElementById('searchResults');
+        const resultsHeader = document.getElementById('searchResultsHeader');
+        const pagination = document.getElementById('pagination');
+
+        if (totalResults === 0) {
+          resultsContainer.innerHTML = `
+            <div class="empty-state">
+              <i class="fas fa-search"></i>
+              <h4 data-i18n="library.noResultsTitle">未找到结果</h4>
+              <p data-i18n="library.noResultsDesc">尝试使用其他关键词或搜索条件</p>
+            </div>
+          `;
+          resultsHeader.style.display = 'block';
+          pagination.style.display = 'none';
+        } else {
+          // 计算当前页的结果
+          const startIndex = (currentPage - 1) * booksPerPage;
+          const endIndex = startIndex + booksPerPage;
+          const currentPageResults = searchResults.slice(startIndex, endIndex);
+
+          // 生成结果HTML
+          let resultsHTML = '<div class="book-grid">';
+          currentPageResults.forEach(book => {
+            resultsHTML += `
+              <div class="book-card" onclick="showBookDetail(${book.id})">
+                <div class="book-cover">
+                  <img src="${book.cover}" alt="${book.title}">
+                  <div class="book-availability ${book.available ? 'available' : 'unavailable'}">
+                    ${book.available ? '<i class="fas fa-check"></i> 可借' : '<i class="fas fa-times"></i> 已借出'}
+                  </div>
+                </div>
+                <div class="book-info">
+                  <h4 class="book-title">${book.title}</h4>
+                  <p class="book-author">${book.author}</p>
+                  <div class="book-meta">
+                    <span class="publisher">${book.publisher}</span>
+                    <span class="publication-date">${book.publicationDate}</span>
+                  </div>
+                  <div class="book-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${book.location}</span>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          resultsHTML += '</div>';
+
+          resultsContainer.innerHTML = resultsHTML;
+          resultsHeader.style.display = 'block';
+          pagination.style.display = 'flex';
+
+          // 更新结果计数
+          document.getElementById('totalResults').textContent = totalResults;
+
+          // 更新分页信息
+          updatePagination();
+        }
+      }
+
+      // 更新分页控件
+      function updatePagination() {
+        document.getElementById('currentPage').textContent = currentPage;
+        document.getElementById('totalPages').textContent = totalPages;
+
+        // 禁用/启用分页按钮
+        document.getElementById('firstPage').disabled = currentPage === 1;
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = currentPage === totalPages;
+        document.getElementById('lastPage').disabled = currentPage === totalPages;
+      }
+
+      // 切换页面
+      function changePage(page) {
+        if (page >= 1 && page <= totalPages) {
+          currentPage = page;
+          displaySearchResults();
+        }
+      }
+
+      // 显示图书详情
+      function showBookDetail(bookId) {
+        const book = mockBooks.find(b => b.id === bookId);
+        if (!book) return;
+
+        const modal = document.getElementById('bookDetailModal');
+        const content = document.getElementById('bookDetailContent');
+
+        content.innerHTML = `
+          <div class="book-detail-grid">
+            <div class="book-detail-cover">
+              <img src="${book.cover}" alt="${book.title}">
+              <div class="book-availability ${book.available ? 'available' : 'unavailable'}">
+                ${book.available ? '<i class="fas fa-check"></i> 可借' : '<i class="fas fa-times"></i> 已借出'}
+              </div>
+            </div>
+            <div class="book-detail-info">
+              <h4>${book.title}</h4>
+              <p class="author">作者：${book.author}</p>
+              <div class="meta-info">
+                <div class="meta-item">
+                  <span class="label">ISBN：</span>
+                  <span class="value">${book.isbn}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">出版社：</span>
+                  <span class="value">${book.publisher}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">出版日期：</span>
+                  <span class="value">${book.publicationDate}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">索书号：</span>
+                  <span class="value">${book.callNumber}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">馆藏位置：</span>
+                  <span class="value">${book.location}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">分类：</span>
+                  <span class="value">${getCategoryName(book.category)}</span>
+                </div>
+                <div class="meta-item">
+                  <span class="label">主题：</span>
+                  <span class="value">${book.subject}</span>
+                </div>
+              </div>
+              <div class="book-description">
+                <h5>内容简介</h5>
+                <p>${book.description}</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        modal.style.display = 'flex';
+      }
+
+      // 获取分类名称
+      function getCategoryName(category) {
+        const categoryNames = {
+          'computer': '计算机科学',
+          'literature': '文学',
+          'science': '自然科学',
+          'engineering': '工程技术',
+          'social': '社会科学',
+          'art': '艺术',
+          'history': '历史'
+        };
+        return categoryNames[category] || category;
+      }
+
+      // 关闭图书详情模态框
+      function closeBookDetailModal() {
+        document.getElementById('bookDetailModal').style.display = 'none';
+      }
+
+      // 点击模态框外部关闭
+      window.onclick = function(event) {
+        const modal = document.getElementById('bookDetailModal');
+        if (event.target === modal) {
+          closeBookDetailModal();
+        }
+      }
+
+      // 页面加载完成后初始化
+      document.addEventListener('DOMContentLoaded', function() {
+        // 从URL获取搜索参数（如果有）
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+        if (query) {
+          document.getElementById('searchKeyword').value = query;
+          performBookSearch();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>校友捐赠 - Web技术大学</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+      <div class="header-main">
+        <div class="logo">
+          <h1>Web技术大学校友总会</h1>
+          <p>Web Technology University Alumni Association</p>
+        </div>
+        <div class="top-links">
+          <a href="../index.html" class="underline-hover">返回学校首页</a>
+          <a href="../login.html" class="underline-hover">校友登录</a>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="alumni.html" class="underline-hover">校友首页</a></li>
+          <li><a href="donation.html" class="active underline-hover">校友捐赠</a></li>
+          <li><a href="#" class="underline-hover">校友活动</a></li>
+          <li><a href="#" class="underline-hover">校友服务</a></li>
+          <li><a href="#" class="underline-hover">联系我们</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 捐赠横幅 -->
+    <section class="donation-banner">
+      <div class="banner-content">
+        <h1 data-i18n="donation.title">校友捐赠</h1>
+        <p data-i18n="donation.subtitle">凝聚校友力量 共创美好未来</p>
+        <div class="donation-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="totalDonation">¥ 1,234,567</span>
+            <span class="stat-label" data-i18n="donation.total">累计捐赠</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="donorCount">1,234</span>
+            <span class="stat-label" data-i18n="donation.donors">捐赠人次</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="projectCount">45</span>
+            <span class="stat-label" data-i18n="donation.projects">捐赠项目</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <main class="main">
+      <div class="container">
+        <!-- 捐赠介绍 -->
+        <section class="donation-intro">
+          <div class="section-header">
+            <h2 data-i18n="donation.introTitle">捐赠意义</h2>
+          </div>
+          <div class="intro-content">
+            <p data-i18n="donation.introText">
+              校友捐赠是支持学校发展的重要力量，您的每一份捐赠都将用于学校的教育事业发展、
+              教学设施改善、学生奖助学金设立、师资队伍建设等方面。您的慷慨捐赠，将帮助更多
+              学子实现梦想，推动学校各项事业不断前进。
+            </p>
+          </div>
+        </section>
+
+        <!-- 捐赠方式 -->
+        <section class="donation-methods">
+          <div class="section-header">
+            <h2 data-i18n="donation.methodsTitle">捐赠方式</h2>
+          </div>
+          <div class="methods-grid">
+            <div class="method-card">
+              <div class="method-icon">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <h3 data-i18n="donation.methodOnline">在线捐赠</h3>
+              <p data-i18n="donation.methodOnlineText">
+                通过微信、支付宝等方式进行在线捐赠，方便快捷，实时到账。
+              </p>
+              <button class="btn btn-primary" data-i18n="donation.methodOnlineBtn">
+                立即捐赠
+              </button>
+            </div>
+            <div class="method-card">
+              <div class="method-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <h3 data-i18n="donation.methodBank">银行转账</h3>
+              <p data-i18n="donation.methodBankText">
+                通过银行转账方式进行捐赠，支持国内外各大银行。
+              </p>
+              <button class="btn btn-primary" data-i18n="donation.methodBankBtn">
+                查看账号
+              </button>
+            </div>
+            <div class="method-card">
+              <div class="method-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3 data-i18n="donation.methodOffline">线下捐赠</h3>
+              <p data-i18n="donation.methodOfflineText">
+                可直接前往学校校友总会办公室进行现场捐赠。
+              </p>
+              <button class="btn btn-primary" data-i18n="donation.methodOfflineBtn">
+                联系我们
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 在线捐赠表单 -->
+        <section class="online-donation">
+          <div class="section-header">
+            <h2 data-i18n="donation.onlineTitle">在线捐赠</h2>
+          </div>
+          <div class="donation-form-container">
+            <form id="donationForm" class="donation-form" onsubmit="return handleDonationSubmit()">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="donorName" data-i18n="donation.donorName">捐赠人姓名 *</label>
+                  <input type="text" id="donorName" name="donorName" placeholder="请输入您的姓名" required>
+                  <div class="error-message" id="donorNameError"></div>
+                </div>
+                <div class="form-group">
+                  <label for="donorPhone" data-i18n="donation.donorPhone">联系电话 *</label>
+                  <input type="tel" id="donorPhone" name="donorPhone" placeholder="请输入您的联系电话" required>
+                  <div class="error-message" id="donorPhoneError"></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="donorEmail" data-i18n="donation.donorEmail">电子邮箱</label>
+                  <input type="email" id="donorEmail" name="donorEmail" placeholder="请输入您的电子邮箱">
+                  <div class="error-message" id="donorEmailError"></div>
+                </div>
+                <div class="form-group">
+                  <label for="donorType" data-i18n="donation.donorType">捐赠人类型 *</label>
+                  <select id="donorType" name="donorType" required>
+                    <option value="" data-i18n="donation.selectType">请选择</option>
+                    <option value="alumni" data-i18n="donation.typeAlumni">校友</option>
+                    <option value="student" data-i18n="donation.typeStudent">在校学生</option>
+                    <option value="parent" data-i18n="donation.typeParent">学生家长</option>
+                    <option value="enterprise" data-i18n="donation.typeEnterprise">企业单位</option>
+                    <option value="other" data-i18n="donation.typeOther">其他</option>
+                  </select>
+                  <div class="error-message" id="donorTypeError"></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="donationAmount" data-i18n="donation.amount">捐赠金额（元） *</label>
+                  <div class="amount-input-group">
+                    <span class="currency-symbol">¥</span>
+                    <input type="number" id="donationAmount" name="donationAmount" placeholder="请输入捐赠金额" required min="1">
+                  </div>
+                  <div class="amount-options">
+                    <button type="button" class="amount-option" onclick="setAmount(100)">¥100</button>
+                    <button type="button" class="amount-option" onclick="setAmount(500)">¥500</button>
+                    <button type="button" class="amount-option" onclick="setAmount(1000)">¥1,000</button>
+                    <button type="button" class="amount-option" onclick="setAmount(5000)">¥5,000</button>
+                    <button type="button" class="amount-option" onclick="setAmount(10000)">¥10,000</button>
+                  </div>
+                  <div class="error-message" id="donationAmountError"></div>
+                </div>
+                <div class="form-group">
+                  <label for="donationProject" data-i18n="donation.project">捐赠项目 *</label>
+                  <select id="donationProject" name="donationProject" required>
+                    <option value="" data-i18n="donation.selectProject">请选择</option>
+                    <option value="scholarship" data-i18n="donation.projectScholarship">学生奖学金</option>
+                    <option value="infrastructure" data-i18n="donation.projectInfrastructure">校园基础设施建设</option>
+                    <option value="library" data-i18n="donation.projectLibrary">图书馆建设</option>
+                    <option value="research" data-i18n="donation.projectResearch">科研项目支持</option>
+                    <option value="other" data-i18n="donation.projectOther">其他项目</option>
+                  </select>
+                  <div class="error-message" id="donationProjectError"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="donationMessage" data-i18n="donation.message">捐赠留言</label>
+                <textarea id="donationMessage" name="donationMessage" rows="3" placeholder="请输入您的捐赠留言"></textarea>
+                <div class="error-message" id="donationMessageError"></div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-group">
+                  <input type="checkbox" id="anonymousDonation" name="anonymousDonation">
+                  <label for="anonymousDonation" data-i18n="donation.anonymous">匿名捐赠</label>
+                </div>
+                <div class="checkbox-group">
+                  <input type="checkbox" id="receipt" name="receipt" required>
+                  <label for="receipt" data-i18n="donation.receipt">需要捐赠收据</label>
+                </div>
+                <div class="checkbox-group">
+                  <input type="checkbox" id="agreement" name="agreement" required>
+                  <label for="agreement" data-i18n="donation.agreement">
+                    我已阅读并同意<a href="#">《捐赠协议》</a>和<a href="#">《隐私政策》</a> *
+                  </label>
+                </div>
+                <div class="error-message" id="agreementError"></div>
+              </div>
+              <div class="form-actions">
+                <button type="reset" class="btn btn-secondary" data-i18n="donation.reset">重置</button>
+                <button type="submit" class="btn btn-primary" data-i18n="donation.submit">确认捐赠</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 捐赠鸣谢 -->
+        <section class="donation-thanks">
+          <div class="section-header">
+            <h2 data-i18n="donation.thanksTitle">捐赠鸣谢</h2>
+          </div>
+          <div class="thanks-content">
+            <div class="thanks-intro">
+              <p data-i18n="donation.thanksText">
+                感谢所有关心和支持学校发展的校友和社会各界人士，您的慷慨捐赠将永远被铭记。
+              </p>
+            </div>
+            <div class="donor-list">
+              <h3 data-i18n="donation.recentDonors">近期捐赠</h3>
+              <ul id="recentDonors">
+                <li><span class="donor-name">张三</span> <span class="donor-amount">¥1,000</span> <span class="donor-date">2025-12-24</span></li>
+                <li><span class="donor-name">李四</span> <span class="donor-amount">¥500</span> <span class="donor-date">2025-12-23</span></li>
+                <li><span class="donor-name">王五</span> <span class="donor-amount">¥2,000</span> <span class="donor-date">2025-12-22</span></li>
+                <li><span class="donor-name">赵六</span> <span class="donor-amount">¥100</span> <span class="donor-date">2025-12-21</span></li>
+                <li><span class="donor-name">匿名校友</span> <span class="donor-amount">¥5,000</span> <span class="donor-date">2025-12-20</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 成功捐赠模态框 -->
+    <div id="donationSuccessModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="donation.successTitle">捐赠成功</h3>
+          <span class="close" onclick="closeDonationModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <p data-i18n="donation.successMessage">
+            感谢您的慷慨捐赠！您的爱心将帮助更多学子实现梦想。
+          </p>
+          <div class="success-details">
+            <p data-i18n="donation.successNote">
+              捐赠收据将在5个工作日内通过您提供的联系方式发送给您。
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="closeDonationModal()" data-i18n="donation.close">关闭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <h3>Web技术大学校友总会</h3>
+          <p>地址：XX省XX市高新区文理大道1号</p>
+          <p>电话：010-12345678 | 邮箱：alumni@wtu.edu.cn</p>
+        </div>
+        <div class="footer-bottom">
+          <div class="links">
+            <span>相关链接：</span>
+            <a href="http://www.moe.gov.cn/" target="_blank">中华人民共和国教育部</a>
+            <a href="https://www.edu.cn/" target="_blank">中国教育科研网</a>
+          </div>
+          <div class="nav-links">
+            <a href="alumni.html">校友首页</a>
+            <a href="donation.html">校友捐赠</a>
+            <a href="../contact.html">联系我们</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+      // 设置捐赠金额
+      function setAmount(amount) {
+        document.getElementById('donationAmount').value = amount;
+      }
+
+      // 表单验证
+      function validateDonationForm() {
+        let isValid = true;
+        
+        // 重置所有错误信息
+        document.querySelectorAll('.error-message').forEach(el => {
+          el.textContent = '';
+        });
+
+        // 验证姓名
+        const donorName = document.getElementById('donorName').value.trim();
+        if (donorName === '') {
+          document.getElementById('donorNameError').textContent = '请输入捐赠人姓名';
+          isValid = false;
+        }
+
+        // 验证电话
+        const donorPhone = document.getElementById('donorPhone').value.trim();
+        const phoneRegex = /^1[3-9]\d{9}$/;
+        if (donorPhone === '') {
+          document.getElementById('donorPhoneError').textContent = '请输入联系电话';
+          isValid = false;
+        } else if (!phoneRegex.test(donorPhone)) {
+          document.getElementById('donorPhoneError').textContent = '请输入有效的手机号码';
+          isValid = false;
+        }
+
+        // 验证邮箱（如果填写）
+        const donorEmail = document.getElementById('donorEmail').value.trim();
+        if (donorEmail !== '') {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(donorEmail)) {
+            document.getElementById('donorEmailError').textContent = '请输入有效的电子邮箱地址';
+            isValid = false;
+          }
+        }
+
+        // 验证捐赠人类型
+        const donorType = document.getElementById('donorType').value;
+        if (donorType === '') {
+          document.getElementById('donorTypeError').textContent = '请选择捐赠人类型';
+          isValid = false;
+        }
+
+        // 验证捐赠金额
+        const donationAmount = document.getElementById('donationAmount').value;
+        if (donationAmount === '' || isNaN(donationAmount) || donationAmount < 1) {
+          document.getElementById('donationAmountError').textContent = '请输入有效的捐赠金额（至少1元）';
+          isValid = false;
+        }
+
+        // 验证捐赠项目
+        const donationProject = document.getElementById('donationProject').value;
+        if (donationProject === '') {
+          document.getElementById('donationProjectError').textContent = '请选择捐赠项目';
+          isValid = false;
+        }
+
+        // 验证协议
+        const agreement = document.getElementById('agreement').checked;
+        if (!agreement) {
+          document.getElementById('agreementError').textContent = '请阅读并同意捐赠协议和隐私政策';
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      // 处理捐赠提交
+      function handleDonationSubmit() {
+        if (validateDonationForm()) {
+          // 显示成功模态框
+          document.getElementById('donationSuccessModal').style.display = 'flex';
+          
+          // 重置表单
+          document.getElementById('donationForm').reset();
+          
+          // 更新捐赠统计数据（模拟）
+          updateDonationStats();
+        }
+        return false; // 阻止表单默认提交
+      }
+
+      // 更新捐赠统计数据
+      function updateDonationStats() {
+        // 模拟更新数据
+        const totalDonation = document.getElementById('totalDonation');
+        const donorCount = document.getElementById('donorCount');
+        
+        // 简单的数字动画效果
+        animateNumber(totalDonation, 1234567, 1244567);
+        animateNumber(donorCount, 1234, 1235);
+      }
+
+      // 数字动画
+      function animateNumber(element, start, end, duration = 1000) {
+        const startTime = performance.now();
+        const diff = end - start;
+        
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const current = Math.floor(start + diff * progress);
+          
+          if (element.id === 'totalDonation') {
+            element.textContent = '¥ ' + current.toLocaleString();
+          } else {
+            element.textContent = current.toLocaleString();
+          }
+          
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        }
+        
+        requestAnimationFrame(update);
+      }
+
+      // 关闭捐赠成功模态框
+      function closeDonationModal() {
+        document.getElementById('donationSuccessModal').style.display = 'none';
+      }
+
+      // 点击模态框外部关闭
+      window.onclick = function(event) {
+        const modal = document.getElementById('donationSuccessModal');
+        if (event.target === modal) {
+          closeDonationModal();
+        }
+      }
+
+      // 页面加载完成后初始化
+      document.addEventListener('DOMContentLoaded', function() {
+        // 初始化数字动画
+        animateNumber(document.getElementById('totalDonation'), 0, 1234567);
+        animateNumber(document.getElementById('donorCount'), 0, 1234);
+        animateNumber(document.getElementById('projectCount'), 0, 45);
+      });
+    </script>
+  </body>
+</html>

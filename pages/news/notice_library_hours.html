@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图书馆关于端午节期间开馆时间的通知 - Web技术大学</title>
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .news-detail-container {
+        width: 1200px;
+        margin: 20px auto;
+        padding: 40px;
+        background: #fff;
+        min-height: 600px;
+      }
+      .news-header {
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+      .news-title {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      .news-meta {
+        color: #999;
+        font-size: 14px;
+      }
+      .news-meta span {
+        margin: 0 10px;
+      }
+      .news-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #444;
+      }
+      .news-content p {
+        margin-bottom: 20px;
+        text-indent: 2em;
+      }
+      .breadcrumb {
+        width: 1200px;
+        margin: 20px auto 0;
+        font-size: 14px;
+        color: #666;
+      }
+      .breadcrumb a {
+        color: #0056b3;
+      }
+      .back-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 8px 20px;
+        background: #f0f0f0;
+        color: #333;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+      .back-btn:hover {
+        background: #e0e0e0;
+        color: #0056b3;
+      }
+      @media (max-width: 1240px) {
+        .news-detail-container,
+        .breadcrumb {
+          width: 95%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+      <div class="header-top">
+        <div class="top-right">
+          <a href="../login.html">在校师生</a>
+          <a href="../alumni/alumni.html">校友总会</a>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="logo">
+          <h1>Web技术大学</h1>
+          <p>Web Technology University</p>
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="headerSearchInput"
+            placeholder="请输入关键词"
+          />
+          <button onclick="handleSearch()">搜索</button>
+        </div>
+      </div>
+      <nav class="nav">
+        <ul>
+          <li>
+            <a href="../index.html">首页</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">校园快讯</a></li>
+              <li><a href="../news/news_past.html">通知速递</a></li>
+              <li><a href="../campus/activities.html">校园活动</a></li>
+              <li><a href="../news/news_media.html">今日聚焦</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../about/intro.html">学校概况</a>
+            <ul class="dropdown">
+              <li><a href="../about/intro.html">学校简介</a></li>
+              <li><a href="../about/leaders.html">领导信息</a></li>
+              <li><a href="../about/history.html">办学历史</a></li>
+              <li><a href="../about/honors.html">校园荣誉</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../departments/dept_literature.html">院系设置</a>
+            <ul class="dropdown">
+              <li><a href="../departments/dept_literature.html">文学院</a></li>
+              <li><a href="../departments/dept_science.html">理学院</a></li>
+              <li><a href="../departments/dept_engineering.html">工学院</a></li>
+              <li><a href="../departments/dept_art.html">艺术学院</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../news/news_media.html">新闻中心</a>
+            <ul class="dropdown">
+              <li><a href="../news/news_media.html">媒体报道</a></li>
+              <li><a href="../news/news_photos.html">图片新闻</a></li>
+              <li><a href="../news/news_videos.html">视频集锦</a></li>
+              <li><a href="../news/news_past.html">往期新闻</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../admissions/admission_guide.html">招生就业</a>
+            <ul class="dropdown">
+              <li><a href="../admissions/admission_guide.html">招生简章</a></li>
+              <li><a href="../admissions/employment.html">就业信息</a></li>
+              <li><a href="../admissions/graduates.html">毕业生风采</a></li>
+              <li><a href="../admissions/apply_guide.html">报考指南</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../research/research_projects.html">科学研究</a>
+            <ul class="dropdown">
+              <li><a href="../research/research_projects.html">科研项目</a></li>
+              <li><a href="../research/achievements.html">成果展示</a></li>
+              <li><a href="../research/teams.html">研究团队</a></li>
+              <li><a href="../research/journals.html">学术期刊</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="../campus/clubs.html">校园文化</a>
+            <ul class="dropdown">
+              <li><a href="../campus/clubs.html">学生社团</a></li>
+              <li><a href="../campus/activities.html">文化活动</a></li>
+              <li><a href="../campus/art_show.html">艺术展演</a></li>
+              <li><a href="../contact.html">联系我们</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="breadcrumb">
+      当前位置：<a href="../index.html">首页</a> > <a href="#">通知公告</a> > 正文
+    </div>
+    <main class="news-detail-container">
+      <div class="news-header">
+        <h1 class="news-title">图书馆关于端午节期间开馆时间的通知</h1>
+        <div class="news-meta">
+          <span>发布时间：2025-06-12</span>
+          <span>来源：图书馆</span>
+          <span>点击量：890</span>
+        </div>
+      </div>
+      <div class="news-content">
+        <p>各位读者：</p>
+        <p>
+          根据国务院办公厅关于2025年部分节假日安排的通知精神，结合我校实际情况，现将端午节期间图书馆开馆时间安排通知如下：
+        </p>
+        <p>
+          <strong>6月12日（星期日，端午节）：</strong>
+          法定节假日，闭馆一天，电子资源正常提供服务。
+        </p>
+        <p>
+          <strong>6月13日（星期一）至14日（星期二）：</strong>
+          按周末时间开放，开放时间为 8:00 - 22:00。
+        </p>
+        <p>6月15日（星期三）起恢复正常开放。</p>
+        <p>请各位读者互相转告。</p>
+        <p style="text-align: right; margin-top: 50px">
+          图书馆<br />2025年6月12日
+        </p>
+      </div>
+      <div style="text-align: center">
+        <a href="../index.html" class="back-btn">返回首页</a>
+        <a
+          href="javascript:history.back()"
+          class="back-btn"
+          style="margin-left: 10px"
+          >返回上一页</a
+        >
+      </aside>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <div class="footer-top">
+        <h3>Web技术大学</h3>
+        <p>地址：XX省XX市高新区文理大道1号</p>
+      </div>
+      <div class="footer-bottom">
+        <div class="links">
+          <span>相关链接：</span>
+          <a href="http://www.moe.gov.cn/" target="_blank"
+            >中华人民共和国教育部</a
+          >
+          <a href="https://www.edu.cn/" target="_blank">中国教育科研网</a>
+        </div>
+        <div class="nav-links">
+          <a href="#">快速导航</a>
+          <a href="../about/intro.html">学校概况</a>
+          <a href="../departments/dept_literature.html">院系设置</a>
+          <a href="../contact.html">联系我们</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>
